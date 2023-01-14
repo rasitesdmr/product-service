@@ -11,6 +11,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product getByProductIdAndDeletedFalse(Long productId); // productId parametresi ile DB git ve deleted false olanları getir.
 
-    List<Product> getAllByDeletedFalse(); // Deleted'i false olan bütün ürünleri geti.
+    List<Product> getAllByDeletedFalse(); // Deleted'i false olan bütün ürünleri getir.
 
 }

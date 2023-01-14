@@ -1,6 +1,6 @@
 package com.rasitesdmr.productservice.exception.enums;
 
-public interface FriendlyMessageCodeImpl {
+public interface FriendlyMessageCode {
 
     int getFriendlyMessageCode();
 }

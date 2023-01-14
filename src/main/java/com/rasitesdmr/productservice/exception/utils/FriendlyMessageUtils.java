@@ -1,7 +1,7 @@
 package com.rasitesdmr.productservice.exception.utils;
 
 import com.rasitesdmr.productservice.enums.Language;
-import com.rasitesdmr.productservice.exception.enums.FriendlyMessageCodeImpl;
+import com.rasitesdmr.productservice.exception.enums.FriendlyMessageCode;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +16,7 @@ public class FriendlyMessageUtils {
     private static final String RESOURCE_BUNDLE_NAME = "FriendlyMessage";
     private static final String SPECIAL_CHARACTER = "__";
 
-    public static String getFriendlyMessage(Language language , FriendlyMessageCodeImpl messageCode){
+    public static String getFriendlyMessage(Language language , FriendlyMessageCode messageCode){
 
         String messageKey = null;
         try {
