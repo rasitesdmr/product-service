@@ -4,7 +4,8 @@ public enum FriendlyMessageCodes implements FriendlyMessageCode {
 
     OK(1000),
     ERROR(1001),
-    PRODUCT_NOT_CREATED_EXCEPTION(1500);
+    PRODUCT_NOT_CREATED_EXCEPTION(1500),
+    PRODUCT_SUCCESSFULLY_EXCEPTION(1501);
 
     private final int value;
 

@@ -8,5 +8,4 @@ import lombok.Data;
 public class FriendlyMessageResponse {
     private String title;
     private String description;
-    private String buttonPositive;
 }
