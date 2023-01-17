@@ -30,7 +30,8 @@ public class ProductController {
         log.debug("[{}][createProduct] -> response: {}", this.getClass().getSimpleName(), productResponse);
         return InternalApiResponse.<ProductResponse>builder()
                 .friendlyMessageResponse(FriendlyMessageResponse.builder()
-                        .title(FriendlyMessageUtils.getFriendlyMessage(language, FriendlyMessageCodes.PRODUCT_NOT_CREATED_EXCEPTION))
+                        .title(FriendlyMessageUtils.getFriendlyMessage(language, FriendlyMessageCodes.SUCCESS))
+                        .description(FriendlyMessageUtils.getFriendlyMessage(language,FriendlyMessageCodes.PRODUCT_SUCCESSFULLY_CREATED))
                         .build())
                 .httpStatus(HttpStatus.CREATED)
                 .hasError(false)

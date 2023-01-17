@@ -22,7 +22,7 @@ public class FriendlyMessageUtils {
         String messageKey = null;
         try {
             Locale locale = new Locale(language.name());
-            ResourceBundle resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE_NAME, locale);
+            ResourceBundle resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE_NAME,locale);
             messageKey = messageCode.getClass().getSimpleName() + SPECIAL_CHARACTER + messageCode;
             System.out.println(messageKey);
             return resourceBundle.getString(messageKey);
