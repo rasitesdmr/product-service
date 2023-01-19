@@ -25,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse createProduct(Language language, ProductCreateRequest productCreateRequest) {
+
         log.debug("[{}][createProduct] -> request: {}", this.getClass().getSimpleName(), productCreateRequest);
         try {
             Product product = productMapper.productCreateRequestToProduct(productCreateRequest);
