@@ -40,5 +40,10 @@ public class ProductController {
 
     }
 
+    @PostMapping("/message")
+    public String test(String message){
+        return message;
+    }
+
 
 }
