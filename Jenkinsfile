@@ -9,22 +9,20 @@ pipeline {
     stages {
         stage('Build') {
            agent {
-             docker {
-               image 'maven:3.8.3-adoptopenjdk-17'
-               args '-v $HOME/.m2:/root/.m2'
-               reuseNode true
-             }
+             label 'master'
            }
            steps {
-             sh """
-                mvn compile jib:dockerBuild
-                 """
+             script {
+               docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
+                 sh 'mvn compile jib:dockerBuild'
+               }
+             }
            }
         }
 
         stage('Docker Publish') {
             steps {
-                    withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "https://hub.docker.com"]) {
+                    withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "${IMAGE_REGISTRY}"]) {
                         sh "docker push ${IMAGE_REGISTRY}:${IMAGE_VERSION}"
                     }
             }
@@ -33,7 +31,7 @@ pipeline {
         stage('Deploy Docker-compose') {
              steps {
                sh "docker-compose -f /opt/test/docker-compose.yaml stop product-service"
-               withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "https://hub.docker.com"]) {
+               withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "${IMAGE_REGISTRY}"]) {
                        sh "docker-compose -f /opt/test/docker-compose.yaml pull product-service"
                }
                dir('/opt/test') {
