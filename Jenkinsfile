@@ -9,16 +9,14 @@ pipeline {
     stages {
         stage('Build') {
            agent {
-             docker {
-               image 'maven:3.9.0-adoptopenjdk-17'
-               args '-v $HOME/.m2:/root/.m2'
-               reuseNode true
-             }
+             label 'master'
            }
            steps {
-             sh """
-                mvn compile jib:dockerBuild
-                 """
+             script {
+               docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
+                 sh 'mvn compile jib:dockerBuild'
+               }
+             }
            }
         }
 
