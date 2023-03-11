@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build') {
            agent {
-             node('my-agent')
+             node('MAVEN_OPTS')
            }
            steps {
              script {
