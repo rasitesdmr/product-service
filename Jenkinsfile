@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build') {
            agent {
-             label 'master'
+             node('my-agent')
            }
            steps {
              script {
