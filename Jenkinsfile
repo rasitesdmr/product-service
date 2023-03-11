@@ -6,15 +6,24 @@ pipeline {
         IMAGE_REGISTRY_CREDENTIAL = 'dockerrasit'
         DOCKER_REGISTRY_URL = ""
     }
+    tools {
+        // Docker CLI (docker-ce-cli) aracı tanımlanıyor
+        // docker-ce-cli aracı için gerekli olan kurulumu Jenkins kurulum sayfasından yada "Jenkins > Manage Jenkins > Global Tool Configuration" altında tanımlayabilirsiniz
+        docker 'docker-ce-cli'
+    }
     stages {
         stage('Build') {
-           steps {
-             script {
-               docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
-                 sh 'mvn compile jib:dockerBuild'
-               }
-             }
-           }
+            // label yerine agent kullanmadık
+            steps {
+                // withDocker bloğu içinde docker objesi tanımlandı
+                withDocker {
+                    script {
+                        docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
+                            sh 'mvn compile jib:dockerBuild'
+                        }
+                    }
+                }
+            }
         }
 
         stage('Docker Publish') {
