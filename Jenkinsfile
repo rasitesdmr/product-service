@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_REGISTRY = 'docker.io/rasitesdmr1486/test-product-service'
+        IMAGE_REGISTRY = 'r/rasitesdmr1486/test-product-service'
         IMAGE_VERSION = 'v1.0'
         IMAGE_REGISTRY_CREDENTIAL = 'dockerrasit'
     }
