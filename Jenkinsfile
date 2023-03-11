@@ -8,7 +8,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-           agent any {
+           agent {
              docker {
                image 'maven:3.8.1-adoptopenjdk-11'
                args '-v $HOME/.m2:/root/.m2'
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Docker Publish') {
             steps {
-                    withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "https://hub.docker.com"]) {
+                    withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "${IMAGE_REGISTRY}"]) {
                         sh "docker push ${IMAGE_REGISTRY}:${IMAGE_VERSION}"
                     }
             }
@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy Docker-compose') {
              steps {
                sh "docker-compose -f /opt/test/docker-compose.yaml stop product-service"
-               withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "https://hub.docker.com"]) {
+               withDockerRegistry([credentialsId: "${IMAGE_REGISTRY_CREDENTIAL}", url: "${IMAGE_REGISTRY}"]) {
                        sh "docker-compose -f /opt/test/docker-compose.yaml pull product-service"
                }
                dir('/opt/test') {
