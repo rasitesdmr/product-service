@@ -8,11 +8,15 @@ pipeline {
     }
     stages {
         stage('Build') {
-          node('master') {
-            docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
-              sh 'mvn compile jib:dockerBuild'
+            node('master') {
+              steps {
+                script {
+                  docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
+                    sh 'mvn compile jib:dockerBuild'
+                  }
+                }
+              }
             }
-          }
         }
 
         stage('Docker Publish') {
