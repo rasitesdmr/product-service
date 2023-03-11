@@ -8,9 +8,6 @@ pipeline {
     }
     stages {
         stage('Build') {
-           agent {
-             label 'master'
-           }
            steps {
              script {
                docker.image('maven:3.9.0-adoptopenjdk-17').inside('-v $HOME/.m2:/root/.m2') {
