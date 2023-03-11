@@ -1,5 +1,5 @@
 pipeline {
-    agent master
+    agent label
     environment {
         IMAGE_REGISTRY = 'docker.io/rasitesdmr1486/test-product-service'
         IMAGE_VERSION = 'v1.0'
