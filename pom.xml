@@ -116,6 +116,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>product-service</finalName>
     </build>
 
 </project>
