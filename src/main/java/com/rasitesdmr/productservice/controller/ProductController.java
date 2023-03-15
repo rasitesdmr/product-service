@@ -50,4 +50,9 @@ public class ProductController {
         return message;
     }
 
+    @GetMapping("/messaggdgeee")
+    public String dafa(String message){
+        return message;
+    }
+
 }
