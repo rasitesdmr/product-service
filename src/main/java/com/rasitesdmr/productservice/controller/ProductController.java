@@ -45,4 +45,9 @@ public class ProductController {
         return message;
     }
 
+    @GetMapping("/messageee")
+    public String testMessageee(String message){
+        return message;
+    }
+
 }
