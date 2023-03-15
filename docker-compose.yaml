@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+
+  product-service:
+    image: rasitesdmr1486/product-service:latest
+    container_name: app
+    restart: always
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
