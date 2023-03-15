@@ -8,6 +8,7 @@ import com.rasitesdmr.productservice.response.FriendlyMessageResponse;
 import com.rasitesdmr.productservice.response.InternalApiResponse;
 import com.rasitesdmr.productservice.response.ProductResponse;
 import com.rasitesdmr.productservice.service.ProductService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,10 @@ public class ProductController {
                 .payload(productResponse)
                 .build();
 
+    }
+    @GetMapping("/message")
+    public String testMessage(String message){
+        return message;
     }
 
 }
